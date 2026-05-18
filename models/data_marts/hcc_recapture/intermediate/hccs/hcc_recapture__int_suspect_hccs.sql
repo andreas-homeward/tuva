@@ -22,7 +22,19 @@ where lower(reason) != 'prior coding history'
 
 {% if var('hcc_recapture_suspect_list', false) | as_bool %}
 union all
+
 select
-    *
+    person_id
+    , payer
+    , data_source
+    , recorded_date
+    , model_version
+    , claim_id
+    , hcc_code
+    , hcc_description
+    , 1 as suspect_hcc_flag
+    , eligible_claim_flag
+    , hcc_type
+    , hcc_source
 from {{ ref('hcc_recapture__stg_suspect_hccs')}}
 {% endif %}
