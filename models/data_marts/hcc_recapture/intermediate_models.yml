@@ -275,7 +275,7 @@ models:
       schema: |
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
-      alias: int_suspect_hccs
+      alias: dedup_suspect_hccs
       tags: ["hcc_recapture", "intermediate"]
       materialized: table
     data_tests:
