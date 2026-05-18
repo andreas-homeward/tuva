@@ -16,7 +16,7 @@ select distinct
     , hccs.hcc_description
     , hccs.hcc_hierarchy_group
     , hccs.hcc_hierarchy_group_rank
-    , hccs.suspect_hcc_flag
+    , coalesce(gap.suspect_hcc_flag, hccs.suspect_hcc_flag) as suspect_hcc_flag
     -- Latest risk_model_code per person/year/model_version based on recorded_date
     , first_value(hccs.risk_model_code) over (
         partition by 
