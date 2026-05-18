@@ -141,6 +141,8 @@ models:
               - hcc_hierarchy_group_rank
               - suspect_hcc_flag
               - filtered_by_hierarchy_flag
+              - hcc_type
+              - hcc_source
     columns:
       - name: person_id
         description: A unique identifier for a person.
