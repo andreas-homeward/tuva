@@ -24,6 +24,14 @@ models:
           This is the year that the HCC should be coded. Typically the collection year + 1, but for open HCCs it will be the collection year + 2. 
           To illustrate, if we have an HCC claim in 2023, but not in 2024, that means it is open in 2024. The payment year is 2024 + 1 = 2025. So 
           an open HCC from 2023 will have a payment year = 2025.       
+      - name: no_suspects_closed_hccs
+        description: The number of HCCs that were closed in the payment year excluding suspect HCCs. See the definition of closed HCCs in the gap_status field in the gap_status model.
+      - name: no_suspects_open_hccs
+        description: The number of HCCs that are open in the payment year excluding suspect HCCs. See the definition of open HCCs in the gap_status field in the gap_status model.
+      - name: no_suspects_total_hccs
+        description: The total number of HCCs that were open or closed in the payment year excluding suspect HCCs. Excludes new and inappropriate for recapture HCCs.
+      - name: no_suspects_recapture_rate
+        description: Closed HCCs divided by no suspects total HCCs in the given payment year excluding suspect HCCs.
       - name: closed_hccs
         description: The number of HCCs that were closed in the payment year. See the definition of closed HCCs in the gap_status field in the gap_status model.
       - name: open_hccs
@@ -31,7 +39,7 @@ models:
       - name: total_hccs
         description: The total number of HCCs that were open or closed in the payment year. Excludes new and inappropriate for recapture HCCs.
       - name: recapture_rate
-        description: Closed HCCs divided by Total HCCs in the given payment year.
+        description: Closed HCCs divided by total HCCs in the given payment year.
   
   - name: hcc_recapture__recapture_rates_monthly
     description: HCC recapture rates by payment year month.
@@ -61,6 +69,14 @@ models:
         description: >
           The month in the collection year that the HCC was closed. Collection year month is not used since this differs for open vs closed HCCs, but payment year month
           will be the same for both open and closed HCCs.
+      - name: no_suspects_closed_hccs
+        description: The number of HCCs that were closed the payment month excluding suspect HCCs. See the definition of closed HCCs in the gap_status field in the gap_status model.
+      - name: no_suspects_open_hccs
+        description: The number of HCCs that are open in the payment month excluding suspect HCCs. See the definition of open HCCs in the gap_status field in the gap_status model.
+      - name: no_suspects_total_hccs
+        description: The total number of HCCs that were open or closed in the payment month excluding suspect HCCs. Excludes new and inappropriate for recapture HCCs.
+      - name: no_suspects_recapture_rate
+        description: Closed HCCs divided by Total HCCs in the given payment month excluding suspect HCCs.
       - name: closed_hccs
         description: The number of HCCs that were closed the payment month. See the definition of closed HCCs in the gap_status field in the gap_status model.
       - name: open_hccs
