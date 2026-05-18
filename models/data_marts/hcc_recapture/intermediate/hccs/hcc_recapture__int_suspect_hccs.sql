@@ -32,7 +32,7 @@ select
     , claim_id
     , hcc_code
     , hcc_description
-    , 1 as suspect_hcc_flag
+    , suspect_hcc_flag
     , eligible_claim_flag
     , hcc_type
     , hcc_source
