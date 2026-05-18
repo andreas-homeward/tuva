@@ -105,7 +105,7 @@ select
     , gap.hcc_code as recaptured_hcc_code
     , current_year_hier.hcc_code as current_year_hcc_code
     , grp.hcc_code as past_year_hcc_code
-    , coalesce(base.suspect_hcc_flag, gap.suspect_hcc_flag, 0) as suspect_hcc_flag
+    , coalesce(greatest(base.suspect_hcc_flag, gap.suspect_hcc_flag), 0) as suspect_hcc_flag
     , coalesce(base.model_version, gap.model_version) as model_version
     , coalesce(base.collection_year, gap.collection_year) as collection_year
     , coalesce(base.hcc_hierarchy_group, gap.hcc_hierarchy_group) as hcc_hierarchy_group
