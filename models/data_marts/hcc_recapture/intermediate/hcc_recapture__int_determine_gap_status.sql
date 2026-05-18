@@ -40,7 +40,7 @@ risk_gaps as (
         , hcc_code
         , hcc_hierarchy_group
         , hcc_hierarchy_group_rank
-        , 1 as suspect_hcc_flag
+        , suspect_hcc_flag
         , recapturable_flag
         , hcc_type
         , hcc_source
