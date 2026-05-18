@@ -37,6 +37,6 @@ with base as (
 
 select 
     * 
-from base
+from add_rank
 where hcc_type_rank = 1
 
