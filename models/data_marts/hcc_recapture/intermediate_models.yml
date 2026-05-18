@@ -267,7 +267,24 @@ models:
         {% else %}hcc_recapture{%- endif -%}
       alias: int_suspect_hccs
       tags: ["hcc_recapture", "intermediate"]
+      materialized: view
+
+  - name: hcc_recapture__dedup_suspect_hccs
+    description: Suspect HCCs which are identified from sources besides medical claims conditions.
+    config:
+      schema: |
+        {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
+        {% else %}hcc_recapture{%- endif -%}
+      alias: int_suspect_hccs
+      tags: ["hcc_recapture", "intermediate"]
       materialized: table
-
-
-  
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - person_id
+              - payer
+              - data_source
+              - claim_id
+              - hcc_code
+              - model_version
