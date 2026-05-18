@@ -284,7 +284,6 @@ models:
             combination_of_columns:
               - person_id
               - payer
-              - data_source
               - claim_id
               - hcc_code
               - model_version
