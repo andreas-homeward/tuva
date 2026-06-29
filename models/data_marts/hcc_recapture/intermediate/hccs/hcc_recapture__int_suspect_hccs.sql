@@ -14,6 +14,7 @@ select
     , hcc_description
     , 1 as suspect_hcc_flag
     , 1 as eligible_claim_flag
+    , reason
     , 'suspect' as hcc_type
     , 'payer' as hcc_source
 from {{ ref('hcc_suspecting__list_all') }}
@@ -32,8 +33,9 @@ select
     , claim_id
     , hcc_code
     , hcc_description
-    , suspect_hcc_flag
-    , eligible_claim_flag
+    , 1 suspect_hcc_flag
+    , 1 eligible_claim_flag
+    , reason
     , hcc_type
     , hcc_source
 from {{ ref('hcc_recapture__stg_suspect_hccs')}}

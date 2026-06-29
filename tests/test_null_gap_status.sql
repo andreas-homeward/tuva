@@ -15,7 +15,6 @@ left join {{ ref('hcc_recapture__int_gap_status') }} gaps
     and stat.payer = gaps.payer
     and stat.model_version = gaps.model_version
     and stat.payment_year = gaps.payment_year
-    and stat.suspect_hcc_flag = gaps.suspect_hcc_flag
 left join {{ ref('hcc_recapture__int_recapturable_hccs')}} ext
     on stat.person_id = ext.person_id
     and stat.payer = ext.payer
