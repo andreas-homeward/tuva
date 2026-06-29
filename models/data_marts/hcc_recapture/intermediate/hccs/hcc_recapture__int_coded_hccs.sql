@@ -12,7 +12,7 @@ with eligible_claims as (
     from {{ ref('cms_hcc__int_eligible_conditions') }}
 )
 
-select
+select distinct
     cond.person_id
     , cond.payer
     , cond.data_source
@@ -37,3 +37,4 @@ left join eligible_claims as elig
     and cond.payer = elig.payer
     and cond.claim_id = elig.claim_id
 where lower(condition_type) = 'discharge_diagnosis'
+    and hcc_code is not null
