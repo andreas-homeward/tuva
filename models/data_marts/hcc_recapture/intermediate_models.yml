@@ -196,6 +196,9 @@ models:
             - payer
             - model_version
             - recorded_date
+            - data_source
+            - hcc_type
+            - hcc_source
 
   - name: hcc_recapture__int_recapturable_hccs
     description: Filter to just eligible claims and apply HCC hierarchies.
