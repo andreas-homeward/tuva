@@ -45,7 +45,7 @@ with add_rankings as (
             hcc_type_rank asc,
             -- If it was already coded, prefer coded > suspect
             case when hcc_type = 'suspect' then 1 else 0 end asc,
-            case when hcc_gap_type = 'suspect' then 1 else 0 end asc,
+            case when hcc_gap_type = 'suspect' then 1 else 0 end asc
     ) as best_rank
     from add_rankings
 )
