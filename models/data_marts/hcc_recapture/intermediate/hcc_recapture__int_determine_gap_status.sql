@@ -19,7 +19,6 @@ risk_gaps as (
         , hcc_code
         , hcc_hierarchy_group
         , hcc_hierarchy_group_rank
-        , suspect_hcc_flag
         , recapturable_flag
         , hcc_type
         , hcc_source
@@ -40,7 +39,6 @@ risk_gaps as (
         , hcc_code
         , hcc_hierarchy_group
         , hcc_hierarchy_group_rank
-        , suspect_hcc_flag
         , recapturable_flag
         , hcc_type
         , hcc_source
@@ -105,14 +103,15 @@ select
     , gap.hcc_code as recaptured_hcc_code
     , current_year_hier.hcc_code as current_year_hcc_code
     , grp.hcc_code as past_year_hcc_code
-    , coalesce(greatest(base.suspect_hcc_flag, gap.suspect_hcc_flag), 0) as suspect_hcc_flag
     , coalesce(base.model_version, gap.model_version) as model_version
     , coalesce(base.collection_year, gap.collection_year) as collection_year
     , coalesce(base.hcc_hierarchy_group, gap.hcc_hierarchy_group) as hcc_hierarchy_group
     , coalesce(base.hcc_hierarchy_group_rank, gap.hcc_hierarchy_group_rank) as hcc_hierarchy_group_rank
     , coalesce(base.recapturable_flag, gap.recapturable_flag) as recapturable_flag
-    , coalesce(base.hcc_type, gap.hcc_type) as hcc_type
-    , coalesce(base.hcc_source, gap.hcc_source) as hcc_source
+    , base.hcc_type
+    , gap.hcc_type as hcc_gap_type
+    , base.hcc_source
+    , gap.hcc_source as hcc_gap_source
     , case
         when
             gap.hcc_code is not null and base.hcc_code is not null and gap.hcc_code != base.hcc_code and equiv.risk_model_code is not null
