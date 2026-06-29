@@ -188,6 +188,14 @@ models:
       alias: int_coded_hccs
       tags: ["hcc_recapture", "intermediate"]
       materialized: table
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - person_id
+            - hcc_code
+            - payer
+            - model_version
+            - recorded_date
 
   - name: hcc_recapture__int_recapturable_hccs
     description: Filter to just eligible claims and apply HCC hierarchies.
@@ -274,8 +282,7 @@ models:
             - hcc_code
             - payer
             - model_version
-            - payment_year
-            - hcc_hierarchy_group
+            - recorded_date
     columns:
       - name: person_id
         description: A unique identifier for a person.
