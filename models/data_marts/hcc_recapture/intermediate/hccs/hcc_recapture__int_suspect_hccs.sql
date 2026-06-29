@@ -3,7 +3,7 @@
    )
 }}
 
-select
+select distinct
     person_id
     , payer
     , data_source
@@ -24,7 +24,7 @@ where lower(reason) != 'prior coding history'
 {% if var('hcc_recapture_suspect_list', false) | as_bool %}
 union all
 
-select
+select distinct
     person_id
     , payer
     , data_source

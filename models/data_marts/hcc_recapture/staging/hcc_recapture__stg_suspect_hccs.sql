@@ -3,7 +3,7 @@
    )
 }}
 
-select distinct
+select
     cast(person_id as {{dbt.type_string()}}) as person_id
     , cast(payer as {{dbt.type_string()}}) as payer
     , cast(data_source as {{dbt.type_string()}}) as data_source
