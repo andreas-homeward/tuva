@@ -25,6 +25,8 @@ models:
               - rendering_npi
               - claim_id
               - suspect_hcc_flag
+              - hcc_type
+              - hcc_source
     columns:
       - name: person_id
         description: A unique identifier for a person.
