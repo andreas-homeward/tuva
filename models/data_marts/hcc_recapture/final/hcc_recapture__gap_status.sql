@@ -11,8 +11,10 @@ select distinct
     , risk_model_code
     , model_version
     , payment_year
-    , recapture_flag
+    , recapturable_flag
+    , hcc_type
+    , hcc_source
     , gap_status
 from {{ ref('hcc_recapture__int_gap_status') }}
 -- Apply hierarchies
-where filtered_out_by_hierarchy = 0
+where filtered_by_hierarchy_flag = 0
