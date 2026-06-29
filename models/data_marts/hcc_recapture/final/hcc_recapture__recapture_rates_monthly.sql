@@ -26,7 +26,7 @@ select distinct
 from {{ ref('hcc_recapture__hcc_status')}}
 where 1=1
   and gap_status not in ('ineligible for recapture', 'new')
-  and hcc_type in ('captured', 'coded')
+  and hcc_type in ('captured', 'coded', 'suspect')
   and recapturable_flag = 1
   and filtered_by_hierarchy_flag = 0
 )
