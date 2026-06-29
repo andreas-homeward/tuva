@@ -62,6 +62,5 @@ left outer join min_hierarchy as mhier
     and base.data_source = mhier.data_source
     and base.hcc_hierarchy_group = mhier.hcc_hierarchy_group
     and base.hcc_hierarchy_group_rank = mhier.min_hcc_hier_group_rank
-    and base.suspect_hcc_flag = mhier.suspect_hcc_flag
 -- Apply hierarchies
 where mhier.hcc_hierarchy_group is not null

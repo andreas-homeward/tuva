@@ -13,7 +13,6 @@ select distinct
     , payment_year
     , recapture_flag
     , gap_status
-    , suspect_hcc_flag
 from {{ ref('hcc_recapture__int_gap_status') }}
 -- Apply hierarchies
 where filtered_out_by_hierarchy = 0

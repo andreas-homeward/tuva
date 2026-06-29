@@ -133,7 +133,7 @@ select distinct
     , case when elig_bene.person_id is not null then 1 else 0 end as eligible_bene
     , med.rendering_npi
     , reason
-    , suspect_hcc_flag
+    , sus.suspect_hcc_flag
 from include_suspect_hccs as sus
 left outer join seed_hcc_hierarchy as hier
   on sus.hcc_code = hier.hcc_code

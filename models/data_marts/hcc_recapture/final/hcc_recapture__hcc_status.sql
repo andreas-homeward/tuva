@@ -16,7 +16,6 @@ select distinct
     , stg.hcc_description
     , stg.hcc_hierarchy_group
     , stg.hcc_hierarchy_group_rank
-    , stg.suspect_hcc_flag
     , stg.risk_model_code
     , stg.eligible_claim_indicator
     , stg.eligible_bene
@@ -29,7 +28,6 @@ left outer join {{ ref('hcc_recapture__gap_status') }} as gap
   and stg.payer = gap.payer
   and stg.model_version = gap.model_version
   and stg.hcc_code = gap.hcc_code
-  and stg.suspect_hcc_flag = gap.suspect_hcc_flag
   and (case
           when gap.gap_status = 'open' then stg.collection_year + 2
           else stg.collection_year + 1

@@ -211,7 +211,6 @@ models:
             - payer
             - model_version
             - payment_year
-            - suspect_hcc_flag
     columns:
       - name: person_id
         description: A unique identifier for a person.

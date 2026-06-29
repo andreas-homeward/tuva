@@ -25,7 +25,6 @@ select distinct
 from {{ ref('hcc_recapture__hcc_status') }}
 where gap_status not in ('inappropriate for recapture', 'new')
   and gap_status is not null
-  and suspect_hcc_flag = 0
 )
 
 , monthly_hcc_counts as (

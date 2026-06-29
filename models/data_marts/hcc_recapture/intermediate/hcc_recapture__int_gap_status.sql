@@ -19,7 +19,6 @@ select distinct
     , hcc_code
     , hcc_hierarchy_group
     , hcc_hierarchy_group_rank
-    , suspect_hcc_flag
 from eligible_hccs
 )
 
@@ -72,7 +71,6 @@ select
       coalesce(recap.person_id, base.person_id) as person_id
     , coalesce(recap.payer, base.payer) as payer
     , coalesce(recap.hcc_code, base.hcc_code) as hcc_code
-    , coalesce(recap.suspect_hcc_flag, 0) as suspect_hcc_flag
     , recap.hcc_code as recaptured_hcc_code
     , current_year_hier.hcc_code as current_year_hcc_code
     , grp.hcc_code as past_year_hcc_code
@@ -132,7 +130,6 @@ select
       person_id
     , payer
     , hcc_code
-    , suspect_hcc_flag
     , model_version
     , collection_year + 1 as payment_year
     , recapture_flag
@@ -159,7 +156,6 @@ select
       person_id
     , payer
     , hcc_code
-    , suspect_hcc_flag
     , model_version
     , payment_year
     , risk_model_code
@@ -189,7 +185,6 @@ select
     , payment_year
     , model_version
     , hcc_hierarchy_group
-    , suspect_hcc_flag
     , min(hcc_hierarchy_group_rank) as min_hcc_hier_group_rank
 from best_gap_status
 group by
@@ -198,7 +193,6 @@ group by
     , payment_year
     , model_version
     , hcc_hierarchy_group
-    , suspect_hcc_flag
 )
 
 -- Using distinct to deduplicate
@@ -213,7 +207,6 @@ select distinct
     , bgap.gap_status
     , bgap.hcc_hierarchy_group
     , bgap.hcc_hierarchy_group_rank
-    , bgap.suspect_hcc_flag
     -- Apply hierarchies (i.e. if the hierarchy is not the min hierarchy, then remove it)
     , case when bgap.hcc_hierarchy_group is not null and mhier.hcc_hierarchy_group is null then 1 else 0 end as filtered_out_by_hierarchy
 from best_gap_status as bgap
@@ -224,7 +217,6 @@ left outer join min_open_hierarchy as mhier
   and bgap.model_version = mhier.model_version
   and bgap.hcc_hierarchy_group = mhier.hcc_hierarchy_group
   and bgap.hcc_hierarchy_group_rank = mhier.min_hcc_hier_group_rank
-  and bgap.suspect_hcc_flag = mhier.suspect_hcc_flag
 -- Join eligible benes again here to capture new rows with open gaps
 inner join {{ ref('hcc_recapture__stg_eligible_benes') }} as elig
   on bgap.person_id = elig.person_id

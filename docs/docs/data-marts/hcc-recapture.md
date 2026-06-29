@@ -10,7 +10,7 @@ The HCC recapture data mart enables organizations to track HCCs which have been 
 - It affects that patient's risk score
 - The risk score affects reimbursement for value-based care contracts
 
-This mart not only tracks HCCs which were previously coded, but also automatically includes any suspect HCCs from the suspect HCC mart and flags them using the `suspect_hcc_flag`.
+This mart not only tracks HCCs which were previously coded, but also automatically includes any suspect HCCs from the suspect HCC mart.
 
 Additionally, the mart provides recapture rates and a lot of detail into the type of gap closure.
 

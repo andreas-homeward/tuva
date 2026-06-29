@@ -97,7 +97,6 @@ models:
             - rendering_npi
             - claim_id
             - condition_type
-            - suspect_hcc_flag
     columns:
       - name: person_id
         description: A unique identifier for a person.
@@ -167,7 +166,6 @@ models:
             - model_version
             - payment_year
             - hcc_hierarchy_group
-            - suspect_hcc_flag
     columns:
       - name: person_id
         description: A unique identifier for a person.
