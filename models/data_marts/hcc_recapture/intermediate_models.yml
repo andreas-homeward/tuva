@@ -283,6 +283,7 @@ models:
             - payer
             - model_version
             - recorded_date
+            - data_source
     columns:
       - name: person_id
         description: A unique identifier for a person.
