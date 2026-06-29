@@ -64,7 +64,7 @@ It's common for data providers to only share a subset of available data based on
 
 For example, is bill_type_code important?  Which use cases (e.g. metrics) can't I pursue if I don't get this field?  These are the types of questions you'll need to think through and be able to answer.
 
-It's a good practice to provide a data dictionary to your data provider to let them know the data you're looking for.  If you're planning to use Tuva can you share the data dictionary for the [Tuva Input Layer](/input-layer).  It's a pretty standard, normal looking claims data model.  In certain cases the data provider will send you the data already in this format.  We also provide guidance in [this spreadsheet](https://docs.google.com/spreadsheets/d/1tzLnmEB_Z-34QfkIiZhFpV2Zzr9pn-mBUotlvAZ5D7U/edit?usp=sharing) for which fields are needed for which data marts in Tuva.
+If you're planning to use Tuva, check out the [Input Layer data dictionary](/input-layer), which is what you need to map your source data to in order to run Tuva.
 
 ## Adjustments, Denials, and Reversals
 
@@ -170,6 +170,4 @@ The most common failure-mode I see is a ton of time and effort spent setting up 
 3. Work backwards from the analysis-ready data tables to determine the raw claims data elements that are needed to do the analysis.  
 
 If you spend the time following this exercise and build your data platform accordingly, I pretty much guarantee you'll avoid wasting time and resources building a claims data platform no one uses and everyone hates :-)
-
-
 
