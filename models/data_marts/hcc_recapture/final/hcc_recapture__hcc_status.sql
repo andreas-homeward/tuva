@@ -28,8 +28,8 @@ select distinct
     ) as risk_model_code
     , hccs.hcc_type
     , hccs.hcc_source
-    , hccs.hcc_gap_type
-    , hccs.hcc_gap_source
+    , gap.hcc_gap_type
+    , gap.hcc_gap_source
     , coalesce(gap.gap_status,'ineligible for recapture') as gap_status
     -- Filters that may lead to an 'ineligible for recapture' gap status
     , hccs.hcc_chronic_flag
