@@ -16,7 +16,7 @@ select distinct
     , hccs.hcc_description
     , hccs.hcc_hierarchy_group
     , hccs.hcc_hierarchy_group_rank
-    , hccs.suspect_hcc_flag
+    , hccs.external_hcc_flag
     , hccs.reason
     -- Latest risk_model_code per person/year/model_version based on recorded_date
     , first_value(hccs.risk_model_code) over (

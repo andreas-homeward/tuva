@@ -395,9 +395,8 @@ models:
           meta:
             data_type: integer
             is_primary_key: true
-      - name: suspect_hcc_flag
-        description: Flag indicating whether the HCC comes from suspecting logic rather
-          than a billed diagnosis.
+      - name: external_hcc_flag
+        description: "These HCCs are not based on claims, but based on data provided from clinical or additional payer HCC lists."
         config:
           meta:
             data_type: integer

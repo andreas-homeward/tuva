@@ -21,9 +21,9 @@ left join {{ ref('hcc_recapture__int_recapturable_hccs')}} ext
     and stat.data_source = ext.data_source
     and stat.payment_year = ext.collection_year + 1
     and stat.hcc_code = ext.hcc_code
-    and stat.suspect_hcc_flag = ext.suspect_hcc_flag
+    and stat.external_hcc_flag = ext.external_hcc_flag
 where stat.gap_status = 'ineligible for recapture'
     and stat.hcc_chronic_flag = 1
-    and stat.suspect_hcc_flag = 0
+    and stat.external_hcc_flag = 0
     and stat.eligible_claim_flag = 1
     and stat.filtered_by_hierarchy_flag = 0

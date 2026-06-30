@@ -21,7 +21,7 @@ select distinct
     , cond.claim_id
     , cond.hcc_code
     , cond.hcc_description
-    , 0 as suspect_hcc_flag
+    , 0 as external_hcc_flag
     , case
         when elig.claim_id is not null then 1
         else 0

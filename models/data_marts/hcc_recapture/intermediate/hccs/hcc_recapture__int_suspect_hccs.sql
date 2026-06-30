@@ -12,7 +12,7 @@ select distinct
     , null as claim_id
     , hcc_code
     , hcc_description
-    , 1 as suspect_hcc_flag
+    , 0 as external_hcc_flag
     , 1 as eligible_claim_flag
     , reason
     , 'suspect' as hcc_type
@@ -21,7 +21,7 @@ from {{ ref('hcc_suspecting__list_all') }}
 -- Exclude since already included in int_all_conditions
 where lower(reason) != 'prior coding history'
 
-{% if var('hcc_recapture_suspect_list', false) | as_bool %}
+{% if var('hcc_recapture_external_suspect_list', false) | as_bool %}
 union all
 
 select distinct
@@ -33,7 +33,7 @@ select distinct
     , claim_id
     , hcc_code
     , hcc_description
-    , 1 suspect_hcc_flag
+    , 1 external_hcc_flag
     , 1 eligible_claim_flag
     , reason
     , hcc_type
