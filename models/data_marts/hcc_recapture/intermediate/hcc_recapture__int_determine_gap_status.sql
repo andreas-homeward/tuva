@@ -82,11 +82,10 @@ equiv_coef as (
 select
     coalesce(base.payer, gap.payer) as payer
     , coalesce(base.person_id, gap.person_id) as person_id
-    , coalesce(base.risk_model_code, gap.risk_model_code, current_year_hier.risk_model_code) as risk_model_code
-    , coalesce(base.eligible_bene_flag, gap.eligible_bene_flag, current_year_hier.eligible_bene_flag) as eligible_bene_flag
+    , coalesce(base.risk_model_code, gap.risk_model_code) as risk_model_code
+    , coalesce(base.eligible_bene_flag, gap.eligible_bene_flag) as eligible_bene_flag
     , coalesce(base.hcc_code, gap.hcc_code) as hcc_code
     , gap.hcc_code as recaptured_hcc_code
-    , current_year_hier.hcc_code as current_year_hcc_code
     , grp.hcc_code as best_current_year_hcc_code
     , coalesce(base.model_version, gap.model_version) as model_version
     , coalesce(base.collection_year, gap.collection_year) as collection_year
