@@ -3,6 +3,8 @@
    )
 }}
 
+{% set lookback = var('hcc_recapture_year_lookback', 1) | int %}
+
 -- Get recapturable HCCs within the past 1 year
 with filtered_hccs as (
     select *
@@ -11,10 +13,12 @@ with filtered_hccs as (
 ),
 
 risk_gaps as (
+{% for year_offset in range(1, lookback + 1) %}
+
     select distinct
         person_id
         , payer
-        , collection_year + 1 as collection_year
+        , collection_year + {{ year_offset }} as collection_year
         , model_version
         , hcc_code
         , hcc_hierarchy_group
@@ -26,6 +30,10 @@ risk_gaps as (
         , risk_model_code
     from filtered_hccs
     where hcc_type = 'coded'
+
+    {% if not loop.last %} union all {% endif %}
+
+{% endfor %}
 
     union all
 
