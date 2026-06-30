@@ -49,3 +49,7 @@ The `hcc_recapture_external_suspect_list` variable defaults to `false` and can b
 ### Chronic HCCs
 
 The `hcc_recapture_external_chronic_hccs` variable defaults to `false` and can be set to `true` in the `dbt_project.yml` in order to provide your own custom chronic HCC definition instead of using the CMS chronic HCC definitions already provided. The data needs to be input into a model called `chronic_hccs`. The required fields can be found in the `hcc_recapture__stg_chronic_hccs` model.
+
+### Lookback Period
+
+The `hcc_recapture_year_lookback` variable defaults to 1 and can be changed to determine the number of years to lookback to find coded HCCs.
