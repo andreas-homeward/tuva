@@ -20,6 +20,7 @@ select distinct
     , model_version
     , hcc_code
     , gap_status
+    , case when hcc_type = 'suspect' then 1 else 0 end as suspect_hcc_flag
     , recapturable_flag
     , row_number() over (partition by person_id, payer, payment_year, model_version, hcc_code order by recorded_date asc) as earliest_hcc_code
 from {{ ref('hcc_recapture__hcc_status')}}
@@ -35,7 +36,7 @@ select
       payer
     , payment_year
     , payment_year_month
-    , case when hcc_type = 'suspect' then 1 else 0 end as suspect_hcc_flag
+    , suspect_hcc_flag
     , sum(case when lower(gap_status) like '%closed%' then 1 else 0 end) as closed_hccs
     , sum(case when gap_status = 'open' then 1 else 0 end) as open_hccs
     , count(*) as total_hccs
