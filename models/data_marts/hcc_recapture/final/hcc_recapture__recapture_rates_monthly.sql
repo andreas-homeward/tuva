@@ -22,7 +22,8 @@ select distinct
     , gap_status
     , case when hcc_type = 'suspect' then 1 else 0 end as suspect_hcc_flag
     , recapturable_flag
-    , row_number() over (partition by person_id, payer, payment_year, model_version, hcc_code order by recorded_date asc) as earliest_hcc_code
+    , row_number() over (partition by person_id, payer, payment_year, model_version, hcc_code 
+                        order by case hcc_type when 'coded' then 1 when 'captured' then 2 else 3 end, recorded_date asc) as earliest_hcc_code
 from {{ ref('hcc_recapture__hcc_status')}}
 where 1=1
   and gap_status not in ('ineligible for recapture', 'new')
